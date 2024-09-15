@@ -1,0 +1,19 @@
+input{
+    background-color: rgb(120, 173, 220);
+    color: rgb(65, 19, 76);
+    border: 3px solid rgb(217, 0, 255);
+    height: 50px;
+    width: 80%;
+    border-radius: 12px;
+    margin-left: 1.5%;
+}
+input:hover{
+    background-color: rgb(190, 214, 235);
+
+}
+#allReceipts{
+    // display: flex;
+    // flex-direction: row;
+    width: 100%;
+    height: fit-content;
+}

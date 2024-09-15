@@ -1,0 +1,21 @@
+<p>expenses-by-year works!</p>
+<form [formGroup]="myForm" (submit)="getExpensesByTear()">
+   
+    <div >
+        
+        <input tpe="number" formControlName="month">
+        <br><br>
+        <label>choose expenses or incomes</label>
+        <div id="options">
+            <input type="button" value="expenses" id="expenses"  formControlName="options" />
+            <input type="button" id="incomes" formControlName="options" value="incomes"/>
+        </div>
+            <input type="submit" value="save">
+    </div>
+    <div *ngIf="incomes.length > 0">
+        <app-receipt *ngFor="let item of incomes" [receipt]="item"></app-receipt>
+    </div>
+    <div *ngIf="expenses.length > 0">
+        <app-expenses *ngFor="let item of expenses" [expenses]="item"></app-expenses>
+    </div>
+</form>
