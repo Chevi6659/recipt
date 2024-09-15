@@ -1,0 +1,12 @@
+<h2>list of receipts</h2>
+
+<div id="allReceipts">
+    <app-receipt *ngFor="let item of receipts" [receipt]="item">
+    </app-receipt>
+</div>
+<input type="button" (click)="addRec()" value="addReceipt" *ngIf="addReceipt==false"/>
+ <app-receipt  *ngIf="addReceipt === true"></app-receipt>
+<!-- <div class="search-wrapper">
+    <input id="searchNameInput" placeholder="חפש לפי שם" type="search" class="form-control" #nameInput (input)="filterBySearch(nameInput.value)" />
+    <img src="assets/search-icon2.png" alt="Search Icon" class="search-icon">
+  </div> -->

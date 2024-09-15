@@ -1,0 +1,30 @@
+a{
+    // margin: 6%;
+    margin-top: 8%;
+    font-size: 25px;
+    color: darkblue;
+    // border: 3.5px solid darkblue;
+    text-decoration: none;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: rgb(194, 241, 241);
+}
+a:hover{
+   color: rgb(159, 200, 234);
+   background-color: rgb(220, 223, 244);
+}
+.nav{
+    border-right: 2px darkblue solid;
+    width: 18%;
+    height: 1100px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-evenly;
+    position: sticky;
+    margin-right: 3%;
+}
+
+

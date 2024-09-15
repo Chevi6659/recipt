@@ -1,0 +1,54 @@
+<div *ngIf="receipt !== undefined ;else otherContent"  id="receipt">
+    <label>receiptNumber: </label>
+    <span >{{receipt?.receiptNum}}</span>
+    <br>
+    <app-customer  [customer]="receipt.customer">
+    </app-customer>
+    <label>amountToPay: </label>
+    <span >{{receipt?.amountToPay}}</span>
+    <br>
+    <label>paymentMethods: </label>
+    <span >{{receipt.paymentType}}</span>
+    <br>
+    <label>date:  </label>
+    <span >{{receipt.date|date}}</span>
+    <br>
+    <label>description:  </label>
+    <span>{{receipt.description}}</span>
+    <br>
+</div>
+
+<ng-template #otherContent>
+<form [formGroup]="myForm" id="receipt"  (submit)="AddReceipt()">
+    <label>receiptNumber: </label>
+   <input pInputText type="text" formControlName="receiptNum"/>
+    <br>
+    <label>customer name</label>
+        
+        <select formControlName="customerName">
+            <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
+        </select>
+<br>
+    <label>amountToPay: </label>
+    <input pInputText type="number" formControlName="amountToPay"/>
+    <br>
+    <label>paymentType: </label>
+    <select formControlName="paymentType">
+        <option value="cash">מזומן</option>
+        <option value="credit">אשראי</option>
+        <option value="bankTransfer">העברה בנקאית</option>
+    </select>
+    <br>
+    <label>date: </label>
+    <input pInputText type="text" formControlName="date"/>
+    <br>
+    <label>description: </label>
+    <input pInputText type="text" formControlName="description"/>
+    <br>
+    <input type="submit" value=" save " id="in"/>
+
+</form>
+
+
+</ng-template>
+

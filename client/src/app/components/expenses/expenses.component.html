@@ -1,0 +1,55 @@
+<!-- <p>expenses works!</p> -->
+<div *ngIf="expenses !==undefined; else otherContent" id="expens">
+    <label>date: </label>
+    <span>{{expenses.date|date}}</span>
+    <app-supplier  [supplier]="expenses.supplier">
+    </app-supplier>
+    <label>amount: </label>
+    <span >{{expenses.amount}}</span>
+    <br>
+    <label>paymentType: </label>
+    <span >{{expenses.paymentType}}</span>
+    <br>
+
+    <br>
+    <label>description: </label>
+    <span >{{expenses.description}}</span>
+    <br><br>
+    <input *ngIf="!addExpense" type="button" value="addExpense" (click)="addExp()" id="in"/>
+  </div>
+
+  <ng-template #otherContent>
+    <form [formGroup]="myForm" (submit)="addExpens()" id="expens">
+        <!-- <h2>saving expenses</h2> -->
+        <label>date</label>
+        <br>
+        <input type="date" formControlName="date" required>
+        <br>
+        <label [innerText]="getStartDateErrorString()"></label>
+        <br>
+        <label for="amount">amount</label>
+        <br>
+        <input type="number" id="amount" formControlName="amount" required>
+      <br>
+        <label>supplierName</label>
+        <br>
+        <select formControlName="supplierName">
+            <option *ngFor="let s of suppliers" value="{{s.name}}">{{s.name}}</option>
+        </select>
+        <br><br>
+        <label>paymentType</label>
+        <br>
+        <select formControlName="paymentType">
+            <option value="cash">cash</option>
+            <option value="credit">credit card</option>
+            <option value="bankTransfer">bankTransfer</option>
+        </select>
+        <br><br>
+        <label>description</label>
+        <br>
+        <input type="text" formControlName="description">
+        <p>
+            <input type="submit" value="Save" id="in">
+        </p>
+    </form>
+  </ng-template>

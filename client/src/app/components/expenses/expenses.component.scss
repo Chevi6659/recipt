@@ -1,0 +1,29 @@
+#expens{
+    border: 2px solid green;
+    width: 100%;
+    color: darkgreen;
+    border-radius: 33px;
+    padding: 1.5%;
+    margin: 1.2%;
+    background-color: rgb(215, 240, 215);
+}
+#in{
+    background-color: rgb(155, 201, 148);
+    color: rgb(19, 76, 36);
+    border: 3px solid rgb(31, 19, 255);
+    height: 50px;
+    width: 80%;
+    border-radius: 12px;
+    margin-left: 1.5%;
+}
+#in:hover{
+    background-color: rgb(190, 214, 235);
+
+}
+label{
+    border-bottom: 2px solid rgb(46, 131, 46);
+    height: fit-content;
+    font-size: 25px;
+    color: rgb(46, 49, 239);
+    margin-right: 25%;
+    }
