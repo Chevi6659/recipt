@@ -1,1 +1,1 @@
-# recipt
+# recipt project
