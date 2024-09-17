@@ -1,7 +1,7 @@
 require('dotenv').config();
-const { getClient } = require('../../../services/mongo/mongo-connection');
-const { MongoOprations } = require('../../../services/mongo/mongo-operations');
-const { openConnection } = require('../../../services/mongo/mongo-connection')
+const { getClient } = require('../../../services/mongo-connection');
+const { MongoOprations } = require('../../../services/mongo-operations');
+const { openConnection } = require('../../../services/mongo-connection')
 const { TEST_MONGO_SERVER, TEST_MONGO_COLLECTION, TEST_MONGO__DB, MONGO_CUSTOMERS_COLLECTION, MONGO_INVOICE_DB } = process.env
 
 describe('MongoOperations', () => {
@@ -43,7 +43,6 @@ describe('MongoOperations', () => {
         expect(result).toBeDefined();
         expect(result.acknowledged).toBeTruthy();
         expect(result.insertedCount).toEqual(3)
-
     });
 
     it('find should filter a item from a collection', async () => {

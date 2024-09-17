@@ -31,11 +31,8 @@ describe('MongoOperations', () => {
         mongo.myCollection = client.db(TEST_MONGO__DB).collection(TEST_MONGO_COLLECTION);
         const testItem = { "name": "ronen" };
         const result = await mongo.insertItem(testItem);
-
         expect(result).toBeDefined();
         expect(result.acknowledged).toBeTruthy();
-
-
     });
 
     it('insertList should insert a list into the collection', async () => {
@@ -44,11 +41,9 @@ describe('MongoOperations', () => {
         mongo.myCollection = client.db(TEST_MONGO__DB).collection(TEST_MONGO_COLLECTION);
         const testList = [{ name: "ronen" }, { name: "chaya" }, { name: "gila" }];
         const result = await mongo.insertList(testList);
-
         expect(result).toBeDefined();
         expect(result.acknowledged).toBeTruthy();
         expect(result.insertedCount).toEqual(3)
-
     });
 
     it('find should filter a item from a collection', async () => {
