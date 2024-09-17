@@ -15,7 +15,7 @@ import { DataService } from '../../services/data.service';
   styleUrl: './expenses-by-date-range.component.scss'
 })
 export class ExpensesByDateRangeComponent {
-  show = false
+  toShow = false
   myForm: FormGroup;
   receipts: Receipt[]=[]
   expenses: Expenses[]=[]
@@ -34,14 +34,14 @@ export class ExpensesByDateRangeComponent {
     let end = controls['endDate'].value
     let choose = controls['incomeOrExpenses'].value
     if (choose === 'incomes')
-      this.dateService.getInvoiceBetweenDays(start, end).subscribe((data: Receipt[]) => {
+      this.dateService.getReceiptsBetweenDates(start, end).subscribe((data: Receipt[]) => {
         this.receipts = data
-        this.show = true
+        this.toShow = true
       })
     else {
       this.dateService.getExpenceBetweenDays(start, end).subscribe((data: Expenses[]) => {
         this.expenses = data
-        this.show = true
+        this.toShow = true
 
       })
     }

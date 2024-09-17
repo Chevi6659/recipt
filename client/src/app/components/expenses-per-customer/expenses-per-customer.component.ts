@@ -35,7 +35,7 @@ export class ExpensesPerCustomerComponent {
     this.letExpensesPerCustomer=true
     const { controls } = this.myForm
     let name = controls['customerName'].value
-    this.dataService.getInvoicesByCustName(name).subscribe((data:Receipt[])=>{
+    this.dataService.getReceiptByCustName(name).subscribe((data:Receipt[])=>{
       this.receipts=data
     })
 

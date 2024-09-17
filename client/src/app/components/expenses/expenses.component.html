@@ -1,5 +1,6 @@
 <!-- <p>expenses works!</p> -->
 <div *ngIf="expenses !==undefined; else otherContent" id="expens">
+  <h2>Expenses</h2>
     <label>date: </label>
     <span>{{expenses.date|date}}</span>
     <app-supplier  [supplier]="expenses.supplier">
@@ -20,7 +21,8 @@
 
   <ng-template #otherContent>
     <form [formGroup]="myForm" (submit)="addExpens()" id="expens">
-        <!-- <h2>saving expenses</h2> -->
+        <h2>add expens</h2>
+
         <label>date</label>
         <br>
         <input type="date" formControlName="date" required>
@@ -44,7 +46,7 @@
             <option value="credit">credit card</option>
             <option value="bankTransfer">bankTransfer</option>
         </select>
-        <br><br>
+        <br>
         <label>description</label>
         <br>
         <input type="text" formControlName="description">

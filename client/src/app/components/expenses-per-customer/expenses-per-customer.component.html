@@ -1,5 +1,5 @@
-<p>expenses-per-customer works!</p>
-<div *ngIf="!letExpensesPerCustomer">
+<!-- <p>expenses-per-customer works!</p> -->
+<div *ngIf="!letExpensesPerCustomer" id="card">
     <form [formGroup]="myForm" (submit)="getExpensesPerCustomer()">
         <label>Select customer name</label>
         <br><br>
@@ -9,13 +9,12 @@
             </select>
         </div>
         <p>
-            <input type="submit" value="Save">
+            <input type="submit" id="submit" value="Save">
         </p>
     </form>
 </div>
 
 
 <div *ngIf="letExpensesPerCustomer" class="a">
-    <app-receipt *ngFor="let item of receipts" [receipt]="item">
-    </app-receipt>
+    <app-receipt *ngFor="let item of receipts" [receipt]="item"></app-receipt>
 </div>

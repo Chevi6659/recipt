@@ -1,1 +1,22 @@
 <p>expenses-by-month works!</p>
+<form [formGroup]="myForm" (submit)="getExpensesByMonth()">
+   
+    <div id="byMonth">
+        <label>choose month</label><br>
+        <input type="number" formControlName="month" min="1" max="12">
+        <br><br>
+        <label>choose expenses or incomes</label><br>
+        <select formControlName="options">
+            <option value="expenses" >expenses</option>
+            <option value="incomes">incomes</option>
+        </select><br>
+ 
+            <input type="submit" id="submit" value="save">
+    </div>
+    <div *ngIf="incomes.length > 0">
+        <app-receipt *ngFor="let item of incomes" [receipt]="item"></app-receipt>
+    </div>
+    <div *ngIf="expenses.length > 0">
+        <app-expenses *ngFor="let item of expenses" [expenses]="item"></app-expenses>
+    </div>
+</form>

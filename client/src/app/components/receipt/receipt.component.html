@@ -10,7 +10,7 @@
     <label>paymentMethods: </label>
     <span >{{receipt.paymentType}}</span>
     <br>
-    <label>date:  </label>
+    <label>date:  </label><br>
     <span >{{receipt.date|date}}</span>
     <br>
     <label>description:  </label>
@@ -20,27 +20,39 @@
 
 <ng-template #otherContent>
 <form [formGroup]="myForm" id="receipt"  (submit)="AddReceipt()">
+    <h4>add receipt</h4>
     <label>receiptNumber: </label>
-   <input pInputText type="text" formControlName="receiptNum"/>
-    <br>
+    <span > {{receiptNum}}</span> <br>
     <label>customer name</label>
         
         <select formControlName="customerName">
             <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
-        </select>
+        </select><br>
+
+        <button (click)="add()" *ngIf="!newCust">add a new customer</button>
+    <div *ngIf="newCust">
+        <form [formGroup]="newCustomerForm" (submit)="saveCustomer()" id="new">
+            <label>Name</label>
+            <input type="text" formControlName="customerName">
+            <label>Number</label>
+            <input type="number" formControlName="customerNum">
+         <br>   <input type="submit" value="save">
+        </form>
+    </div>
 <br>
     <label>amountToPay: </label>
     <input pInputText type="number" formControlName="amountToPay"/>
     <br>
     <label>paymentType: </label>
     <select formControlName="paymentType">
-        <option value="cash">מזומן</option>
-        <option value="credit">אשראי</option>
-        <option value="bankTransfer">העברה בנקאית</option>
+        <option value="cash">cash</option>
+        <option value="credit">credit card</option>
+        <option value="bankTransfer">bank transfer</option>
     </select>
     <br>
-    <label>date: </label>
-    <input pInputText type="text" formControlName="date"/>
+    <label>date: </label><br>
+    <input pInputText type="date" formControlName="date"/>
+    <label [innerText]="getStartDateErrorString()"></label>
     <br>
     <label>description: </label>
     <input pInputText type="text" formControlName="description"/>

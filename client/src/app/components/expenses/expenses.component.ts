@@ -6,6 +6,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Expenses } from '../../models/Expenses.model';
 import { DataService } from '../../services/data.service';
 import { dateValidation } from '../../validations/validationDate';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-expenses',
@@ -25,27 +26,27 @@ export class ExpensesComponent {
 addExpense:boolean=false
   myForm: FormGroup
   suppliers: Array<Supplier> = []
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,private router:Router) {
     this.myForm = new FormGroup({
       date: new FormControl('', [Validators.required, dateValidation()]),
       amount: new FormControl(''),
       supplierName: new FormControl(''),
       supplierNum: new FormControl(''),
       paymentMethods: new FormControl(''),
-      detail: new FormControl('')
+      description: new FormControl('')
     })
-    this.dataService.getAllSuppliers().subscribe((sup: Array<Supplier>) => {
-      this.suppliers = sup;
+    this.dataService.getAllSuppliers().subscribe((data: Array<Supplier>) => {
+      this.suppliers = data;
     });
   }
 
   addExpens() {
     const { controls } = this.myForm
-    let sup = this.suppliers.find(supplier => supplier.name === controls['supplierName'].value);
+    let supplier = this.suppliers.find(supplier => supplier.name === controls['supplierName'].value);
     let expenses: Expenses = {
       date: controls['date'].value,
       amount: controls['amount'].value,
-      supplier: sup ? sup : { name: 'null', number: 'null' },
+      supplier: supplier ? supplier : { name: 'null', number: 'null' },
       paymentType: controls['paymentType'].value,
       description: controls['description'].value
     }
@@ -54,6 +55,7 @@ addExpense:boolean=false
     this.dataService.addExpenses(expenses).subscribe(data => {
       console.log({ data });
       this.myForm.reset()
+      this.router.navigate([['/all-expenses']])
     })
   }
   getControlErrorsString(controlName: string) {

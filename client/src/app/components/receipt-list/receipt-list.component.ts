@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Receipt } from '../../models/Receipt.model';
 import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
@@ -14,49 +14,21 @@ import { ReceiptComponent } from '../receipt/receipt.component';
   styleUrl: './receipt-list.component.scss'
 })
 export class ReceiptListComponent {
+  // אחרי שיש חיבור לשרת להשאיר את זה
+  // @Input() allReceipts!: string
+  // receipts!: Array<Receipt>
+  // constructor(private dataService: DataService) {
+
+  //   this.dataService.getAllReceipts().subscribe((data: Receipt[]) => {
+  //     this.receipts = data
+  //   })
+
+  // }
+
   receipts: Array<Receipt>
    addReceipt:boolean=false
-  // private searchTerms = new Subject<{ firstName: string, lastName: string}>();
-  // currentPage = 1;
-  // itemsPerPage = 10; 
-  // displayedCustomers: Customer[] = [];
-  // customers: Customer[] = [];
-
+  
   constructor(){
-  
-  // ngOnInit(): void {
-  //   this.setupSearch();
-  //   this.loadCustomers();
-  // }
-
-  //   setupSearch() {
-  //     this.searchTerms.pipe(
-  //       debounceTime(1000),
-  //       distinctUntilChanged(),
-  //       switchMap(({ firstName, lastName }) => {
-  //         return this.dataService.filterCustomers(firstName, lastName);
-  //       })
-  //     ).subscribe(data => {
-  //       this.customers = data;
-  //       this.currentPage = 1;
-  //       this.updateDisplayedCustomers();
-  //     });
-  //   }
-
-  //   filterBySearch(name: string): void {
-  //     const nameParts = name.split(' ');
-  //     const firstName = nameParts[0] || '';
-  //     const lastName = nameParts.slice(1).join(' ') || ''; // handling middle names as well
-  
-  //     this.searchTerms.next({ firstName, lastName });
-  // }
-
-  //   loadCustomers(): void {
-  //     this.dataService.getCustomertFromServer().subscribe(customers => {
-  //       this.customers = customers;
-  //       this.updateDisplayedCustomers();
-  //     });
-  //   }
    
     this.receipts = [{  
       customer: {name:'AAA',number:'15875'},
@@ -79,10 +51,6 @@ export class ReceiptListComponent {
        }
 }
   
-  // updateDisplayedCustomers(): void {
-  //   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-  //   const endIndex = startIndex + this.itemsPerPage;
-  //   this.displayedCustomers = this.customers.slice(startIndex, endIndex);
-  // }
+
 
 

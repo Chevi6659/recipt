@@ -1,16 +1,17 @@
 <p>expenses-by-year works!</p>
 <form [formGroup]="myForm" (submit)="getExpensesByTear()">
    
-    <div >
-        
-        <input tpe="number" formControlName="month">
+    <div id="byYear">
+        <label>choose year</label><br>
+        <input type="number" formControlName="year" min="1900" max="2050">
         <br><br>
-        <label>choose expenses or incomes</label>
-        <div id="options">
-            <input type="button" value="expenses" id="expenses"  formControlName="options" />
-            <input type="button" id="incomes" formControlName="options" value="incomes"/>
-        </div>
-            <input type="submit" value="save">
+        <label>choose expenses or incomes</label><br>
+        <select formControlName="options">
+            <option value="expenses" >expenses</option>
+            <option value="incomes">incomes</option>
+        </select><br>
+        
+            <input type="submit" id="submit" value="save">
     </div>
     <div *ngIf="incomes.length > 0">
         <app-receipt *ngFor="let item of incomes" [receipt]="item"></app-receipt>

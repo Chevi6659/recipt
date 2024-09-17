@@ -1,0 +1,8 @@
+<p>all-expenses works!</p>
+<div>
+    <h2>Expenses</h2>
+    <app-expenses *ngFor="let item of expenses" [expenses]="item" id="expenses">
+    </app-expenses>
+</div>
+<!-- <input type="button" (click)="addExp()" value="addReceipt" *ngIf="addReceipt==false"/>
+ <app-receipt  *ngIf="addReceipt === true"></app-receipt> -->
