@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export function dateValidation({ error='the date need to be before today'} = {}): ValidatorFn {
+export function dateValidation({ error='the date needs to be before today'} = {}): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         let date=new Date()
         if (control.value === null) {

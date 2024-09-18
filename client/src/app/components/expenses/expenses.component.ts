@@ -65,8 +65,8 @@ addExpense:boolean=false
   getStartDateErrorString() {
     const error = this.myForm.controls['date'].errors?.['date']
     if (error) {
-      const message = 'pleas put a date before today'
-      return message;
+      
+      return 'please put a date before today';
     }
     else {
       return ''

@@ -1,6 +1,6 @@
 #expens{
     border: 2px solid green;
-    width: 100%;
+    width: 260px;
     color: darkgreen;
     border-radius: 33px;
     padding: 1.5%;
@@ -26,4 +26,8 @@ label{
     font-size: 25px;
     color: rgb(46, 49, 239);
     margin-right: 25%;
+    }
+    #error{
+        color: red;
+        font-size:15px;
     }
