@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { getClient, openConnection, closeConnection } = require('../../../services/mongo-connection')
+const { getClient, openConnection, closeConnection } = require('../../../services/mongo/mongo-connection')
 const { isConnected } = require('./mongo-helpers')
 
 const { TEST_MONGO_SERVER } = process.env
@@ -19,7 +19,6 @@ describe('GET_CLIENT', () => {
 
 describe('OPEN_CONNECTION', () => {
     jest.setTimeout(30500);
-
     afterEach(async () => {
         const client = getClient();
         await client.close();
@@ -95,7 +94,6 @@ describe('OPEN_CONNECTION', () => {
                 expect(error.message).toBe('server url must start with "mongodb://" or "mongodb+srv://"')
             }
         })
-
     })
 
     describe('CLOSE_CONNECTION', () => {
