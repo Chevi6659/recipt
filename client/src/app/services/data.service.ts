@@ -48,7 +48,7 @@ private apiUrl= 'http://127.0.0.1:3621'
     )
   }
   addExpenses(newExpenses: Expenses): Observable<Expenses> {
-    return this.http.post<Expenses>('http://127.0.0.1:3620/expenses/saveExpenses',
+    return this.http.post<Expenses>('http://127.0.0.1:3000/expenses/saveExpenses',
       newExpenses, {
       headers: { 'content-type': 'application/json' }
     })
