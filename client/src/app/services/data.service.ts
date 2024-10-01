@@ -10,7 +10,7 @@ import { Supplier } from '../models/Supplier.model';
   providedIn: 'root'
 })
 export class DataService {
-private apiUrl= 'http://127.0.0.1:3621'
+private apiUrl= 'http://127.0.0.1:3000'
   constructor(private http:HttpClient) { }
 
   addCustomer(customer: Customer): Observable<Customer> {
@@ -28,7 +28,7 @@ private apiUrl= 'http://127.0.0.1:3621'
   // }
 
  AllCustomers(): Observable<Customer[]> { 
-    return this.http.get<Customer[]>(`${this.apiUrl}/customrs/allCustomers`);
+    return this.http.get<Customer[]>(`${this.apiUrl}/customrs/getAllCustomers`);
   }
   getCustByName(name: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customrs/getCustomerByName/${name}`)
@@ -56,7 +56,7 @@ private apiUrl= 'http://127.0.0.1:3621'
     )
   }
   addExpenses(newExpenses: Expenses): Observable<Expenses> {
-    return this.http.post<Expenses>('http://127.0.0.1:3000/expenses/saveExpenses',
+    return this.http.post<Expenses>('http://127.0.0.1:3000/expenses/createNewExpenses',
       newExpenses, {
       headers: { 'content-type': 'application/json' }
     })
@@ -71,19 +71,19 @@ private apiUrl= 'http://127.0.0.1:3621'
     return this.http.get<Array<Expenses>>(`${this.apiUrl}/expenses/getExpensesByYear/${year}`);
   }
   getIncomeByMonth(month: number): Observable<Array<Receipt>> {
-    return this.http.get<Array<Receipt>>(`${this.apiUrl}/invoices/getInvoicesByMonth/${month}`);
+    return this.http.get<Array<Receipt>>(`${this.apiUrl}/invoices/getInvoiceByMonth/${month}`);
   }
   getIncomeByYear(year: number): Observable<Array<Receipt>> {
-    return this.http.get<Array<Receipt>>(`${this.apiUrl}/invoices/getInvoicesByYear/${year}`);
+    return this.http.get<Array<Receipt>>(`${this.apiUrl}/invoices/getInvoiceByYear/${year}`);
   }
   getInvoiceBetweenDays(start:string,end:string):Observable<Receipt[]>{
     return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/between/${start}/${end}`);
   }
   getExpenceBetweenDays(start:string,end:string):Observable<Expenses[]>{
-    return this.http.get<Expenses[]>(`${this.apiUrl}/expenses/between/${start}/${end}`);
+    return this.http.get<Expenses[]>(`${this.apiUrl}/expenses/getInvoiceBetweenDays/${start}/${end}`);
   }
   getInvoicesByCustName(name:string):Observable<Receipt[]>{
-    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/byCustName/${name}`);
+    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getInvoiceByCustName/${name}`);
   }
 }
 
