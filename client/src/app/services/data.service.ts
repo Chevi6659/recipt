@@ -13,11 +13,19 @@ export class DataService {
 private apiUrl= 'http://127.0.0.1:3621'
   constructor(private http:HttpClient) { }
 
-
-  get AllReceipts(): Observable<Array<Receipt>> {
-    // ניתוב להבאת כל הקבלות
-    return this.http.get<Array<Receipt>>(`${this.apiUrl}`);
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`${this.apiUrl}/customrs/createCustomer`,
+      customer,
+      {
+        headers: { 'content-type': 'application/json' }
+      }
+    );
   }
+
+  // get AllReceipts(): Observable<Array<Receipt>> {
+  //   // ניתוב להבאת כל הקבלות
+  //   return this.http.get<Array<Receipt>>(`${this.apiUrl}`);
+  // }
 
  AllCustomers(): Observable<Customer[]> { 
     return this.http.get<Customer[]>(`${this.apiUrl}/customrs/allCustomers`);
@@ -26,12 +34,12 @@ private apiUrl= 'http://127.0.0.1:3621'
     return this.http.get<Customer>(`${this.apiUrl}/customrs/getCustomerByName/${name}`)
   }
   getAllSuppliers(): Observable<Supplier[]> {
-    const url = `${this.apiUrl}/suppliers/getAllSuppliers`;
+    const url = `${this.apiUrl}/provider/getAllProviders`;
     return this.http.get<Supplier[]>(url);
   }
 
   getAllInvoices(): Observable<Receipt[]> {
-    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getAll`);
+    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getAllInvoice`);
   }
 
   get lastNumber(): Observable<number> {
@@ -40,7 +48,7 @@ private apiUrl= 'http://127.0.0.1:3621'
 
   addReceipt(newReceipt: Receipt): Observable<Receipt> {
     
-    return this.http.post<Receipt>(`${this.apiUrl}/invoices/addInvoice`,
+    return this.http.post<Receipt>(`${this.apiUrl}/invoices/createNewInvoice`,
       newReceipt,
       {
         headers: { 'content-type': 'application/json' }
