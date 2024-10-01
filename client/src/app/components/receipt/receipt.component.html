@@ -28,7 +28,16 @@
         <select formControlName="customerName">
             <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
         </select>
-<br>
+<br><button (click)="add()">add new customer</button>
+<div *ngIf="show">
+    <form [formGroup]="custForm" (submit)="saveCustomer()">
+        <label>Name</label>
+        <input type="text" formControlName="nameCust">
+        <label>Number</label>
+        <input type="number" formControlName="numberCust">
+        <input type="submit" value="save">
+    </form>
+</div>
     <label>amountToPay: </label>
     <input pInputText type="number" formControlName="amountToPay"/>
     <br>
@@ -48,7 +57,4 @@
     <input type="submit" value=" save " id="in"/>
 
 </form>
-
-
 </ng-template>
-
