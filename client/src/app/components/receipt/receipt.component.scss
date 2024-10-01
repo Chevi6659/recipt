@@ -6,8 +6,12 @@
     padding: 1.5%;
     border-radius: 33px;
     background-color: rgba(188, 210, 224, 0.985);
-    text-align: center;
+    // text-align: center;
     font-size: 25px;
+    span{
+        text-align: end;
+        margin-left: 220px;
+    }
 }
 label{
     border-bottom: 2px solid blue;
