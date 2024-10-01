@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Receipt } from '../../models/Receipt.model';
 import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,8 @@ import { ReceiptComponent } from '../receipt/receipt.component';
   styleUrl: './receipt-list.component.scss'
 })
 export class ReceiptListComponent {
-  receipts: Array<Receipt>
+  @Input() whatTo!: string
+  receipts!: Array<Receipt>
    addReceipt:boolean=false
   // private searchTerms = new Subject<{ firstName: string, lastName: string}>();
   // currentPage = 1;
@@ -22,8 +23,10 @@ export class ReceiptListComponent {
   // displayedCustomers: Customer[] = [];
   // customers: Customer[] = [];
 
-  constructor(){
-  
+  constructor(private dataService: DataService){
+    this.dataService.getAllInvoices().subscribe((data: Receipt[]) => {
+      this.receipts = data
+    })
   // ngOnInit(): void {
   //   this.setupSearch();
   //   this.loadCustomers();
@@ -43,13 +46,7 @@ export class ReceiptListComponent {
   //     });
   //   }
 
-  //   filterBySearch(name: string): void {
-  //     const nameParts = name.split(' ');
-  //     const firstName = nameParts[0] || '';
-  //     const lastName = nameParts.slice(1).join(' ') || ''; // handling middle names as well
   
-  //     this.searchTerms.next({ firstName, lastName });
-  // }
 
   //   loadCustomers(): void {
   //     this.dataService.getCustomertFromServer().subscribe(customers => {
@@ -58,20 +55,20 @@ export class ReceiptListComponent {
   //     });
   //   }
    
-    this.receipts = [{  
-      customer: {name:'AAA',number:'15875'},
-      date:new Date("12/05/2024"),
-      amountToPay: 154,
-      paymentType:'cash',
-      description:'string1',
-      receiptNum: 0},
+    // this.receipts = [{  
+    //   customer: {name:'AAA',number:'15875'},
+    //   date:new Date("12/05/2024"),
+    //   amountToPay: 154,
+    //   paymentType:'cash',
+    //   description:'string1',
+    //   receiptNum: 0},
 
-      { customer: {name:'BBBB',number:'8588'},
-      date:new Date(),
-      amountToPay: 258,
-      paymentType:'credit',
-      description:'string2',
-      receiptNum:1}]
+    //   { customer: {name:'BBBB',number:'8588'},
+    //   date:new Date(),
+    //   amountToPay: 258,
+    //   paymentType:'credit',
+    //   description:'string2',
+    //   receiptNum:1}]
        
   }
   addRec(){
