@@ -25,7 +25,7 @@ export class ExpensesByYearComponent {
 
   constructor(private dataService: DataService) {
     this.myForm = new FormGroup({
-      month: new FormControl(''),
+      year: new FormControl(''),
       options: new FormControl(''),
       time: new FormControl('')
     });
@@ -33,33 +33,20 @@ export class ExpensesByYearComponent {
  
   getExpensesByTear() {
     const { controls } = this.myForm;
-    if (controls['time'].value === 'month') {
+
+  
       if (controls['options'].value === 'expenses') {
-        this.dataService.getExpensesByMonth(controls['month'].value).subscribe((ex: Array<Expenses>) => {
+        this.dataService.getExpensesByYear(controls['year'].value).subscribe((ex: Array<Expenses>) => {
           console.log(ex);
           this.expenses = ex;
         });
       }
       if (controls['options'].value === 'incomes') {
-        this.dataService.getIncomeByMonth(controls['month'].value).subscribe((inco: Array<Receipt>) => {
+        this.dataService.getIncomeByYear(controls['year'].value).subscribe((inco: Array<Receipt>) => {
           console.log(inco);
           this.incomes = inco;
         });
-      }
-    }
-    if (controls['time'].value === 'year') {
-      if (controls['options'].value === 'expenses') {
-        this.dataService.getExpensesByYear(controls['month'].value).subscribe((ex: Array<Expenses>) => {
-          console.log(ex);
-          this.expenses = ex;
-        });
-      }
-      if (controls['options'].value === 'incomes') {
-        this.dataService.getIncomeByYear(controls['month'].value).subscribe((inco: Array<Receipt>) => {
-          console.log(inco);
-          this.incomes = inco;
-        });
-      }
+      
     }
   }
 }

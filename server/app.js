@@ -14,7 +14,7 @@ app.use(cors({
     origin: 'http://localhost:4200'
 }));
 
-app.use('/customer', customerRouter);
+app.use('/customers', customerRouter);
 app.use('/expenses', expensesRouter);
 app.use('/invoices', invoicesRouter);
 app.use('/provider', providerRouter);

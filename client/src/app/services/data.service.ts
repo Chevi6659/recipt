@@ -9,45 +9,32 @@ import { Supplier } from '../models/Supplier.model';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-private apiUrl= 'http://127.0.0.1:3000'
-  constructor(private http:HttpClient) { }
 
+export class DataService {
+private apiUrl= 'http://127.0.0.1:3004'
+  constructor(private http:HttpClient){}
   addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(`${this.apiUrl}/customrs/createCustomer`,
-      customer,
-      {
-        headers: { 'content-type': 'application/json' }
-      }
+    return this.http.post<Customer>(`${this.apiUrl}/customers/createCustomer`,
+      customer,{headers: { 'content-type': 'application/json' } }
     );
   }
-
-  // get AllReceipts(): Observable<Array<Receipt>> {
-  //   // ניתוב להבאת כל הקבלות
-  //   return this.http.get<Array<Receipt>>(`${this.apiUrl}`);
-  // }
-
- AllCustomers(): Observable<Customer[]> { 
-    return this.http.get<Customer[]>(`${this.apiUrl}/customrs/getAllCustomers`);
+ getAllCustomers(): Observable<Customer[]> { 
+    return this.http.get<Customer[]>(`${this.apiUrl}/customers/getAllCustomers`);
   }
   getCustByName(name: string): Observable<Customer> {
-    return this.http.get<Customer>(`${this.apiUrl}/customrs/getCustomerByName/${name}`)
+    return this.http.get<Customer>(`${this.apiUrl}/customers/getCustomerByName/${name}`)
   }
   getAllSuppliers(): Observable<Supplier[]> {
     const url = `${this.apiUrl}/provider/getAllProviders`;
     return this.http.get<Supplier[]>(url);
   }
-
   getAllInvoices(): Observable<Receipt[]> {
     return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getAllInvoice`);
   }
-
   get lastNumber(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}`);
   }
-
   addReceipt(newReceipt: Receipt): Observable<Receipt> {
-    
     return this.http.post<Receipt>(`${this.apiUrl}/invoices/createNewInvoice`,
       newReceipt,
       {
@@ -56,14 +43,11 @@ private apiUrl= 'http://127.0.0.1:3000'
     )
   }
   addExpenses(newExpenses: Expenses): Observable<Expenses> {
-    return this.http.post<Expenses>('http://127.0.0.1:3000/expenses/createNewExpenses',
+    return this.http.post<Expenses>('http://127.0.0.1:3004/expenses/createNewExpenses',
       newExpenses, {
       headers: { 'content-type': 'application/json' }
     })
-
   }
-
-
   getExpensesByMonth(month: number): Observable<Array<Expenses>> {
     return this.http.get<Array<Expenses>>(`${this.apiUrl}/expenses/getExpensesByMonth/${month}`);
   }
@@ -77,29 +61,12 @@ private apiUrl= 'http://127.0.0.1:3000'
     return this.http.get<Array<Receipt>>(`${this.apiUrl}/invoices/getInvoiceByYear/${year}`);
   }
   getInvoiceBetweenDays(start:string,end:string):Observable<Receipt[]>{
-    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/between/${start}/${end}`);
+    return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getInvoiceBetweenDays/${start}/${end}`);
   }
   getExpenceBetweenDays(start:string,end:string):Observable<Expenses[]>{
-    return this.http.get<Expenses[]>(`${this.apiUrl}/expenses/getInvoiceBetweenDays/${start}/${end}`);
+    return this.http.get<Expenses[]>(`${this.apiUrl}/expenses/between/${start}/${end}`);
   }
   getInvoicesByCustName(name:string):Observable<Receipt[]>{
     return this.http.get<Receipt[]>(`${this.apiUrl}/invoices/getInvoiceByCustName/${name}`);
   }
 }
-
-
-
-
-
-
-// filterCustomers(firstName?: string, lastName?: string, number?: string): Observable<Customer[]> {
-//   let params = new HttpParams();
-//   if (firstName) params = params.set('firstName', firstName.trim());
-//   if (lastName) params = params.set('lastName', lastName.trim());
-//   if (number) params = params.set('email', number.trim());
-//   return this.http.get<Customer[]>(`${this.apiUrl}/FilterCustomers`, { params });
-// }
-// getCustomertFromServer(): Observable<Customer[]> {
-//   return this.http.get<Customer[]>(`${this.apiUrl}/GetAllCustomers`);
-// }
-

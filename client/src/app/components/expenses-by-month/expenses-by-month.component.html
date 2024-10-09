@@ -1,1 +1,26 @@
 <p>expenses-by-month works!</p>
+<form [formGroup]="myForm" (submit)="submit()">
+    
+    <div id="expensesIncomeByMonth">
+        <label>{{ messege }}</label>
+        <input tpe="number" formControlName="number">
+        <br><br>
+        <label>Choose expenses or incomes</label>
+        <div id="options">
+            <input type="radio" id="expenses" formControlName="options" value="expenses">
+            <label for="expenses">expenses</label>
+            <br>
+            <input type="radio" id="incomes" formControlName="options" value="incomes">
+            <label for="incomes">incomes</label>
+        </div>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </div>
+    <div *ngIf="incomes.length > 0">
+        <app-receipt *ngFor="let item of incomes" [receipt]="item"></app-receipt>
+    </div>
+    <div *ngIf="expenses.length > 0">
+        <app-expenses *ngFor="let item of expenses" [expenses]="item"></app-expenses>
+    </div>
+</form>

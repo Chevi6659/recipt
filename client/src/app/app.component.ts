@@ -3,7 +3,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ReceiptComponent } from './components/receipt/receipt.component';
 import { ReceiptListComponent } from './components/receipt-list/receipt-list.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
      CustomerComponent,
      ReceiptComponent,
      ReceiptListComponent,
-     NavBarComponent,
      HttpClientModule
     ],
   templateUrl: './app.component.html',

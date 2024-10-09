@@ -3,12 +3,15 @@
    
     <div >
         
-        <input tpe="number" formControlName="month">
+        <input tpe="number" formControlName="year">
         <br><br>
         <label>choose expenses or incomes</label>
         <div id="options">
-            <input type="button" value="expenses" id="expenses"  formControlName="options" />
-            <input type="button" id="incomes" formControlName="options" value="incomes"/>
+            <input type="radio" id="expenses" formControlName="options" value="expenses">
+            <label for="expenses">expenses</label>
+            <br>
+            <input type="radio" id="incomes" formControlName="options" value="incomes">
+            <label for="incomes">incomes</label>
         </div>
             <input type="submit" value="save">
     </div>

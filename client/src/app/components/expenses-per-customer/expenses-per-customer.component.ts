@@ -25,7 +25,7 @@ export class ExpensesPerCustomerComponent {
     this.myForm = new FormGroup({
       customerName: new FormControl('', [Validators.required]),
     })
-    this.dataService.AllCustomers().subscribe(data => {
+    this.dataService.getAllCustomers().subscribe(data => {
       this.customers = data
     })
   }

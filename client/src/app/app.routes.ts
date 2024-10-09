@@ -9,10 +9,11 @@ import { ExpensesPerCustomerComponent } from './components/expenses-per-customer
 import { ExpensesByMonthComponent } from './components/expenses-by-month/expenses-by-month.component';
 import { ExpensesByDateRangeComponent } from './components/expenses-by-date-range/expenses-by-date-range.component';
 import { ExpensesByYearComponent } from './components/expenses-by-year/expenses-by-year.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
 
 export const routes: Routes = [
     // {path:'',component:ReceiptListComponent},
-{path:'customer',component:CustomerComponent},
+{path:'customer',component:CustomerListComponent},
 {path:'receipt',component:ReceiptComponent},
 {path:'receipt-list',component:ReceiptListComponent},
 {path:'expenses',component:ExpensesComponent},

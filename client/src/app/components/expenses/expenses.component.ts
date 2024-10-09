@@ -6,14 +6,16 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Expenses } from '../../models/Expenses.model';
 import { DataService } from '../../services/data.service';
 import { dateValidation } from '../../validations/validationDate';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [CommonModule,SupplierComponent,ReactiveFormsModule],
+  imports: [CommonModule, SupplierComponent, ReactiveFormsModule],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.scss'
 })
+
 export class ExpensesComponent {
   @Input() expenses: {
     date: Date,
@@ -22,23 +24,24 @@ export class ExpensesComponent {
     paymentType: string,
     description: string
   } | undefined
-addExpense:boolean=false
+
+  addExpense: boolean = false
   myForm: FormGroup
   suppliers: Array<Supplier> = []
-  constructor(private dataService: DataService) {
+
+  constructor(private dataService: DataService, private router: Router) {
     this.myForm = new FormGroup({
       date: new FormControl('', [Validators.required, dateValidation()]),
       amount: new FormControl(''),
       supplierName: new FormControl(''),
       supplierNum: new FormControl(''),
-      paymentMethods: new FormControl(''),
-      detail: new FormControl('')
+      paymentType: new FormControl(''),
+      description: new FormControl('')
     })
     this.dataService.getAllSuppliers().subscribe((sup: Array<Supplier>) => {
       this.suppliers = sup;
     });
   }
-
   addExpens() {
     const { controls } = this.myForm
     let sup = this.suppliers.find(supplier => supplier.name === controls['supplierName'].value);
@@ -54,12 +57,13 @@ addExpense:boolean=false
     this.dataService.addExpenses(expenses).subscribe(data => {
       console.log({ data });
       this.myForm.reset()
+      this.router.navigate(['']);
+
     })
   }
   getControlErrorsString(controlName: string) {
     return JSON.stringify(this.myForm.controls[controlName].errors)
   }
-
   getStartDateErrorString() {
     const error = this.myForm.controls['date'].errors?.['date']
     if (error) {
@@ -70,7 +74,7 @@ addExpense:boolean=false
       return ''
     }
   }
-  addExp(){
-    this.addExpense=true
+  addExp() {
+    this.addExpense = true
   }
 }

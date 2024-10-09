@@ -48,18 +48,10 @@ const getExpensesByYear = async (year) => {
 
 const getExpensesBetweenDates = async (startDate, endDate) => {
     mongoOprations.Collection = MONGO_EXPENSES_COLLECTION;
-
-    if (startDate == undefined || startDate == null || endDate == undefined || endDate == null) {
-        throw new Error('Both start date and end date must be defined');
-    }
-    if (!(startDate instanceof Date) || !(endDate instanceof Date)) {
-        throw new Error('Both start date and end date must be of type Date');
-    }
-
     const filter = {
         'date': {
-            $gte: startDate,
-            $lte: endDate
+            $gte: startDate, 
+            $lte: endDate 
         }
     };
 
@@ -71,5 +63,6 @@ const getExpensesBetweenDates = async (startDate, endDate) => {
         throw error;
     }
 }
+
 
 module.exports = { createNewExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear, getExpensesBetweenDates }

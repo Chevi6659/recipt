@@ -10,7 +10,10 @@ import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-expenses-by-date-range',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,ExpensesComponent,ReceiptComponent],
+  imports: [ReactiveFormsModule,
+    CommonModule,
+    ExpensesComponent,
+    ReceiptComponent],
   templateUrl: './expenses-by-date-range.component.html',
   styleUrl: './expenses-by-date-range.component.scss'
 })
@@ -25,28 +28,26 @@ export class ExpensesByDateRangeComponent {
       endDate: new FormControl('', [Validators.required]),
       incomeOrExpenses: new FormControl('', [Validators.required])
     })
-
   }
-
   getExpensesByDateRange() {
     const { controls } = this.myForm
     let start = controls['startDate'].value
     let end = controls['endDate'].value
     let choose = controls['incomeOrExpenses'].value
     if (choose === 'incomes')
+      { console.log('choose',choose);
       this.dateService.getInvoiceBetweenDays(start, end).subscribe((data: Receipt[]) => {
+   console.log('llllllllllllllllp',data);
+   
         this.receipts = data
         this.show = true
       })
+    }
     else {
-      this.dateService.getExpenceBetweenDays(start, end).subscribe((data: Expenses[]) => {
+        this.dateService.getExpenceBetweenDays(start, end).subscribe((data: Expenses[]) => {
         this.expenses = data
         this.show = true
-
       })
     }
-
-
-
   }
 }

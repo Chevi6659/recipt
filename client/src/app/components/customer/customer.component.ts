@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class CustomerComponent {
 
-  @Input() customer:{
-    name:string,
+  @Input() customer: {
+    name: string,
     number: string
-    } | undefined
-        
+  } | undefined
+
 }

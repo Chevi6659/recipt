@@ -1,4 +1,3 @@
-<!-- <p>expenses-by-date-range works!</p> -->
 <form [formGroup]="myForm" (submit)="getExpensesByDateRange()" *ngIf="!show">
     <div>
         <label>choose a start date </label><br>
@@ -16,25 +15,6 @@
         <input type="submit" value="Save">
 </form>
 
-
-<!-- <div *ngIf="date">
-    <form [formGroup]="myForm" (submit)="showByDates()" >
-    <h2>between dates</h2>
-    <label>choose a start date </label><br>
-    <input type="date" formControlName="startDate"/><br>
-    <label>choose an end date</label><br>
-    <input type="date" formControlName="endDate"/><br>
-    <label>Select income or expenses</label><br>
-    <select formControlName="incomeOrExpenses">
-        <option value="expenses">expenses</option>
-        <option value="incomes">incomes</option>
-    </select><br>
-    <input type="submit" value="Save">
-</form>
-</div> -->
-
-
-
 <div *ngIf="show&&receipts!==undefined">
     <app-receipt *ngFor="let item of receipts" [receipt]="item">
     </app-receipt>
@@ -42,4 +22,10 @@
 <div *ngIf="show&&expenses!==undefined">
     <app-expenses *ngFor="let item of expenses" [expenses]="item">
     </app-expenses>
+</div>
+<div *ngIf="show&&receipts==undefined">
+    <label>there are no incomes between this dates</label>
+</div>
+<div *ngIf="show&&expenses==undefined">
+    <label>there are no expenses between this dates</label>
 </div>
